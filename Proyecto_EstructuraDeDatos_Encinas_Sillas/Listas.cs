@@ -41,6 +41,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             }
             else
             {
+                var seleccionado = Contenedor.CheckedItems;
 
             }
         }
@@ -69,7 +70,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             {
                 lista.OrdenarAsecendente();
                 RefrescarLista();
-                MessageBox.Show("Lista re-organizada", "List", MessageBoxButtons.OK);
+                MessageBox.Show("Lista re-organizada", "Listo", MessageBoxButtons.OK);
             }
         }
 
@@ -81,7 +82,9 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             }
             else
             {
-                
+                lista.OrdenarDescendente();
+                RefrescarLista();
+                MessageBox.Show("Lista re-organizada", "Listo", MessageBoxButtons.OK);
             }
         }
 

@@ -57,11 +57,11 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
 
         private void Confirmar_Click(object sender, EventArgs e)
         {
-            if(txtBoxNombre.Text == string.Empty || txtBoxNombre.Text == string.Empty || txtBoxPrecio.Text == string.Empty)
+            if (txtBoxNombre.Text == string.Empty || txtBoxTipoMascota.Text == string.Empty || txtBoxPrecio.Text == string.Empty)
             {
-                MessageBox.Show("Necesitas Ingresar todos los datos", "Advertencia", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Necesitas Ingresar todos los datos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else 
+            else
             {
                 try
                 {

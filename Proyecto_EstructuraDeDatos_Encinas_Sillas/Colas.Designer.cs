@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Colas));
-            Contenedor = new ListBox();
             Titulo = new Label();
             Eliminar = new Button();
             OrdenarDescendente = new Button();
@@ -41,18 +40,10 @@
             panel1 = new Panel();
             CerrarApp = new Button();
             panel3 = new Panel();
+            Contenedor = new ListView();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // Contenedor
-            // 
-            Contenedor.FormattingEnabled = true;
-            Contenedor.ItemHeight = 15;
-            Contenedor.Location = new Point(467, 67);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(313, 199);
-            Contenedor.TabIndex = 29;
             // 
             // Titulo
             // 
@@ -76,6 +67,7 @@
             Eliminar.TabIndex = 27;
             Eliminar.Text = "Eliminar";
             Eliminar.UseVisualStyleBackColor = false;
+            Eliminar.Click += Eliminar_Click;
             // 
             // OrdenarDescendente
             // 
@@ -124,6 +116,7 @@
             Agregar.TabIndex = 23;
             Agregar.Text = "Agregar";
             Agregar.UseVisualStyleBackColor = false;
+            Agregar.Click += Agregar_Click;
             // 
             // MenuPrincipal
             // 
@@ -180,6 +173,14 @@
             panel3.Size = new Size(219, 147);
             panel3.TabIndex = 22;
             // 
+            // Contenedor
+            // 
+            Contenedor.Location = new Point(465, 67);
+            Contenedor.Name = "Contenedor";
+            Contenedor.Size = new Size(315, 201);
+            Contenedor.TabIndex = 29;
+            Contenedor.UseCompatibleStateImageBehavior = false;
+            // 
             // Colas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -205,8 +206,6 @@
         }
 
         #endregion
-
-        private ListBox Contenedor;
         private Label Titulo;
         private Button Eliminar;
         private Button OrdenarDescendente;
@@ -218,5 +217,6 @@
         private Panel panel1;
         private Button CerrarApp;
         private Panel panel3;
+        private ListView Contenedor;
     }
 }

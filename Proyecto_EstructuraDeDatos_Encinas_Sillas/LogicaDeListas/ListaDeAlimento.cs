@@ -150,6 +150,46 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas
                 }
             }
         }
+        public void OrdenarDescendente()
+        {
+            NodoListas Auxiliar = _primero;
+            NodoListas Movimiento = new NodoListas();
+            if (!ListaVacia() && ContadorDatosEnLista() > 2)
+            {
+                while (Auxiliar.Siguiente != null)
+                {
+                    if (Auxiliar.Alimento.Precio < Auxiliar.Siguiente.Alimento.Precio)
+                    {
+                        if (Auxiliar == _primero)
+                        {
+                            Movimiento = Auxiliar.Siguiente;
+                            Auxiliar.Siguiente = Movimiento.Siguiente;
+                            Movimiento.Siguiente = Auxiliar;
+                            _primero = Movimiento;
+                            Auxiliar = _primero;
+                        }
+                        else if (Auxiliar.Siguiente == _ultimo)
+                        {
+                            Movimiento = Auxiliar.Siguiente; // = ultimo
+                            Movimiento.Siguiente = Auxiliar;
+                            Auxiliar.Siguiente = null; // Apuntando a null, porque se volvera el ultimo
+                            _ultimo = Auxiliar;
+                        }
+                        else
+                        {
+                            Movimiento = Auxiliar.Siguiente;
+                            Auxiliar.Siguiente = Movimiento.Siguiente;
+                            Movimiento.Siguiente = Auxiliar;
+                            Auxiliar = Auxiliar.Siguiente;
+                        }
+                    }
+                    else
+                    {
+                        Auxiliar = Auxiliar.Siguiente;
+                    }
+                }
+            }
+        }
 
         //public bool ModificarAlimento(string nombreAlimento)
         //{
