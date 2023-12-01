@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios;
-using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas;
 
 namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 {
+    
     public partial class Listas : Form
     {
         ListaDeAlimento lista = new ListaDeAlimento();
