@@ -40,13 +40,10 @@
             OrdenarDescendente = new Button();
             Eliminar = new Button();
             Titulo = new Label();
-            Contenedor = new ListView();
-            Nombre = new ColumnHeader();
-            RazaDeMascota = new ColumnHeader();
-            Precio = new ColumnHeader();
-            Existencia = new ColumnHeader();
+            gridContenedor = new DataGridView();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -180,14 +177,14 @@
             Titulo.TabIndex = 8;
             Titulo.Text = "Listas";
             // 
-            // Contenedor
+            // gridContenedor
             // 
-            Contenedor.Columns.AddRange(new ColumnHeader[] { Nombre, RazaDeMascota, Precio, Existencia });
-            Contenedor.Location = new Point(509, 65);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(262, 220);
-            Contenedor.TabIndex = 9;
-            Contenedor.UseCompatibleStateImageBehavior = false;
+            gridContenedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridContenedor.Location = new Point(388, 65);
+            gridContenedor.Name = "gridContenedor";
+            gridContenedor.RowTemplate.Height = 25;
+            gridContenedor.Size = new Size(383, 207);
+            gridContenedor.TabIndex = 10;
             // 
             // Listas
             // 
@@ -195,7 +192,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 73, 94);
             ClientSize = new Size(800, 450);
-            Controls.Add(Contenedor);
+            Controls.Add(gridContenedor);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
             Controls.Add(OrdenarDescendente);
@@ -209,6 +206,7 @@
             Text = "Listas";
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -226,10 +224,6 @@
         private Button MenuPrincipal;
         private Button CerrarApp;
         private Label Titulo;
-        private ListView Contenedor;
-        private ColumnHeader Nombre;
-        private ColumnHeader RazaDeMascota;
-        private ColumnHeader Precio;
-        private ColumnHeader Existencia;
+        private DataGridView gridContenedor;
     }
 }

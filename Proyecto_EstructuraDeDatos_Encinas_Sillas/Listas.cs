@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios;
+using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas;
 
 namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
@@ -41,7 +42,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             }
             else
             {
-                var seleccionado = Contenedor.CheckedItems;
+                //
 
             }
         }
@@ -105,15 +106,21 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
         }
         public void RefrescarLista()
         {
-            Contenedor.Clear();
+            gridContenedor.Columns.Clear();
+            gridContenedor.ColumnCount = 4;
+            gridContenedor.Columns[0].Name = "Raza";
+            gridContenedor.Columns[1].Name = "Nombre Del Alimento";
+            gridContenedor.Columns[2].Name = "Precio";
+            gridContenedor.Columns[3].Name = "Existencia";
             int cantidad = lista.ContadorDatosEnLista();
             AlimentoParaMascotas[] arreglo = lista.Listar();
             for (int i = 0; i < cantidad; i++)
             {
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].NombreAlimento));
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].RazaMascota));
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].Precio));
-                Contenedor.Items.Add(arreglo[i].Existencia == true ? "Con Existencia" : "Sin Existencia");
+                gridContenedor.Rows.Add(
+                    arreglo[i].RazaMascota,
+                    arreglo[i].NombreAlimento,
+                    arreglo[i].Precio.ToString(),
+                    arreglo[i].Existencia == true ? "En Existencia" : "Sin Existencia");
             }
         }
     }

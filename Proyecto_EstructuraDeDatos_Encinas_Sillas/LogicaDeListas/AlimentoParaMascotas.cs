@@ -12,5 +12,6 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas
         public string NombreAlimento { get; set; }
         public double Precio { get; set; }
         public bool Existencia { get; set; }
+
     }
 }

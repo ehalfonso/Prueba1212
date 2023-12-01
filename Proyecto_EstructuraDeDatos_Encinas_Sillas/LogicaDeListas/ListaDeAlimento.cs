@@ -112,80 +112,72 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeListas
         }
         public void OrdenarAsecendente()
         {
-            NodoListas Auxiliar = _primero;
-            NodoListas Movimiento = new NodoListas();
-            if (!ListaVacia() && ContadorDatosEnLista() > 2)
+            if (!ListaVacia())
             {
-                while(Auxiliar.Siguiente != null) 
+                int enLista = ContadorDatosEnLista();
+                if(enLista >= 2)
                 {
-                    if (Auxiliar.Alimento.Precio > Auxiliar.Siguiente.Alimento.Precio)
+                    NodoListas Auxiliar = _primero;
+                    AlimentoParaMascotas[] arregloTemporal = new AlimentoParaMascotas[enLista];
+                    AlimentoParaMascotas temporal = new AlimentoParaMascotas();
+                    for(int i = 0; i < enLista; i++)
                     {
-                        if (Auxiliar == _primero)
+                        arregloTemporal[i] = Auxiliar.Alimento;
+                        Auxiliar = Auxiliar.Siguiente;
+                    }
+                    for(int i = 0; i < enLista - 1; i++)
+                    {
+                        for(int j = 0; j < enLista - i - 1; j++)
                         {
-                            Movimiento = Auxiliar.Siguiente;
-                            Auxiliar.Siguiente = Movimiento.Siguiente;
-                            Movimiento.Siguiente = Auxiliar;
-                            _primero = Movimiento;
-                            Auxiliar = _primero;
-                        }
-                        else if(Auxiliar.Siguiente == _ultimo)
-                        {
-                            Movimiento = Auxiliar.Siguiente; // = ultimo
-                            Movimiento.Siguiente = Auxiliar;
-                            Auxiliar.Siguiente = null; // Apuntando a null, porque se volvera el ultimo
-                            _ultimo = Auxiliar;
-                        }
-                        else
-                        {
-                            Movimiento = Auxiliar.Siguiente;
-                            Auxiliar.Siguiente = Movimiento.Siguiente;
-                            Movimiento.Siguiente = Auxiliar;
-                            Auxiliar = Auxiliar.Siguiente;
+                            if (arregloTemporal[j].Precio > arregloTemporal[j + 1].Precio)
+                            {
+                                temporal = arregloTemporal[j];
+                                arregloTemporal[j] = arregloTemporal[j + 1];
+                                arregloTemporal[j + 1] = temporal;
+                            }
                         }
                     }
-                    else
+                    _primero = null;
+                    _ultimo = null;
+                    for(int i = 0; i < enLista; i++)
                     {
-                        Auxiliar = Auxiliar.Siguiente;
+                        IngresarAlimento(arregloTemporal[i]);
                     }
                 }
             }
         }
         public void OrdenarDescendente()
         {
-            NodoListas Auxiliar = _primero;
-            NodoListas Movimiento = new NodoListas();
-            if (!ListaVacia() && ContadorDatosEnLista() > 2)
+            if (!ListaVacia())
             {
-                while (Auxiliar.Siguiente != null)
+                int enLista = ContadorDatosEnLista();
+                if (enLista >= 2)
                 {
-                    if (Auxiliar.Alimento.Precio < Auxiliar.Siguiente.Alimento.Precio)
+                    NodoListas Auxiliar = _primero;
+                    AlimentoParaMascotas[] arregloTemporal = new AlimentoParaMascotas[enLista];
+                    AlimentoParaMascotas temporal = new AlimentoParaMascotas();
+                    for (int i = 0; i < enLista; i++)
                     {
-                        if (Auxiliar == _primero)
+                        arregloTemporal[i] = Auxiliar.Alimento;
+                        Auxiliar = Auxiliar.Siguiente;
+                    }
+                    for (int i = 0; i < enLista - 1; i++)
+                    {
+                        for (int j = 0; j < enLista - i - 1; j++)
                         {
-                            Movimiento = Auxiliar.Siguiente;
-                            Auxiliar.Siguiente = Movimiento.Siguiente;
-                            Movimiento.Siguiente = Auxiliar;
-                            _primero = Movimiento;
-                            Auxiliar = _primero;
-                        }
-                        else if (Auxiliar.Siguiente == _ultimo)
-                        {
-                            Movimiento = Auxiliar.Siguiente; // = ultimo
-                            Movimiento.Siguiente = Auxiliar;
-                            Auxiliar.Siguiente = null; // Apuntando a null, porque se volvera el ultimo
-                            _ultimo = Auxiliar;
-                        }
-                        else
-                        {
-                            Movimiento = Auxiliar.Siguiente;
-                            Auxiliar.Siguiente = Movimiento.Siguiente;
-                            Movimiento.Siguiente = Auxiliar;
-                            Auxiliar = Auxiliar.Siguiente;
+                            if (arregloTemporal[j].Precio < arregloTemporal[j + 1].Precio)
+                            {
+                                temporal = arregloTemporal[j];
+                                arregloTemporal[j] = arregloTemporal[j + 1];
+                                arregloTemporal[j + 1] = temporal;
+                            }
                         }
                     }
-                    else
+                    _primero = null;
+                    _ultimo = null;
+                    for (int i = 0; i < enLista; i++)
                     {
-                        Auxiliar = Auxiliar.Siguiente;
+                        IngresarAlimento(arregloTemporal[i]);
                     }
                 }
             }

@@ -78,9 +78,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas
         public int MascotasEnCola()
         {
             if (ColaVacia())
-            {
                 return -1;
-            }
             else
             {
                 NodoColas Auxiliar = _ultimo;
@@ -108,6 +106,78 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas
                     Auxiliar = Auxiliar.Siguiente;
                 }
                 return lista;
+            }
+        }
+        public void OrdenarDeMayorAMenor()
+        {
+            if (!ColaVacia())
+            {
+                int enCola = MascotasEnCola();
+                if(enCola > 1)
+                {
+                    NodoColas Auxiliar = _ultimo;
+                    MascotasEnEspera[] arregloTemporal = new MascotasEnEspera[enCola];
+                    MascotasEnEspera temporal = new MascotasEnEspera();
+                    for (int i = 0; i < enCola; i++)
+                    {
+                        arregloTemporal[i] = Auxiliar.Mascota;
+                        Auxiliar = Auxiliar.Siguiente;
+                    }
+                    for (int i = 0; i < enCola - 1; i++)
+                    {
+                        for (int j = 0; j < enCola - i - 1; j++)
+                        {
+                            if (arregloTemporal[j].ID < arregloTemporal[j + 1].ID)
+                            {
+                                temporal = arregloTemporal[j];
+                                arregloTemporal[j] = arregloTemporal[j + 1];
+                                arregloTemporal[j + 1] = temporal;
+                            }
+                        }
+                    }
+                    _primero = null;
+                    _ultimo = null;
+                    for (int i = 0; i < enCola; i++)
+                    {
+                        IngresarEnCola(arregloTemporal[i]);
+                    }
+                }
+            }
+        }
+        public void OrdenarDeMenorAMayor()
+        {
+            if (!ColaVacia())
+            {
+                int enCola = MascotasEnCola();
+                if (enCola > 1)
+                {
+                    NodoColas Auxiliar = _ultimo;
+                    MascotasEnEspera[] arregloTemporal = new MascotasEnEspera[enCola];
+                    MascotasEnEspera temporal = new MascotasEnEspera();
+                    for (int i = 0; i < enCola; i++)
+                    {
+                        arregloTemporal[i] = Auxiliar.Mascota;
+                        Auxiliar = Auxiliar.Siguiente;
+                    }
+                    for (int i = 0; i < enCola - 1; i++)
+                    {
+                        for (int j = 0; j < enCola - i - 1; j++)
+                        {
+                            if (arregloTemporal[j].ID > arregloTemporal[j + 1].ID)
+                            {
+                                temporal = arregloTemporal[j];
+                                arregloTemporal[j] = arregloTemporal[j + 1];
+                                arregloTemporal[j + 1] = temporal;
+                            }
+                        }
+                    }
+                    _primero = null;
+                    _ultimo = null;
+                    for (int i = 0; i < enCola; i++)
+                    {
+                        IngresarEnCola(arregloTemporal[i]);
+                    }
+                }
             }
         }
     }

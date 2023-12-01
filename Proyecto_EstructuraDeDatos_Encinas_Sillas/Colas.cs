@@ -51,14 +51,17 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
         }
         public void Reload()
         {
-            Contenedor.Clear();
+            gridContendor.Columns.Clear();
+            gridContendor.ColumnCount = 4;
+            gridContendor.Columns[0].Name = "ID";
+            gridContendor.Columns[1].Name = "Nombre";
+            gridContendor.Columns[2].Name = "Raza";
+            gridContendor.Columns[3].Name = "Encargo";
             int cantidad = cola.MascotasEnCola();
             MascotasEnEspera[] arreglo = cola.Listar();
             for (int i = 0; i < cantidad; i++)
             {
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].Nombre));
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].Raza));
-                Contenedor.Items.Add(Convert.ToString(arreglo[i].Encargo));
+                gridContendor.Rows.Add(arreglo[i].ID.ToString(), arreglo[i].Nombre, arreglo[i].Raza, arreglo[i].Encargo);
             }
         }
 
@@ -71,8 +74,36 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             else
             {
                 MascotasEnEspera mascotaLiberada = cola.Pop();
-                MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado","Eliminado De Cola",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Raza: {mascotaLiberada.Raza}, Nombre: {mascotaLiberada.Nombre} Liberado", "Eliminado De Cola", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Reload();
+            }
+        }
+
+        private void OrdenarAscendente_Click(object sender, EventArgs e)
+        {
+            if (cola.ColaVacia())
+            {
+                MessageBox.Show("La Cola Se Encuentra Vacía!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                cola.OrdenarDeMenorAMayor();
+                Refresh();
+                MessageBox.Show("Cola re-organizada", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OrdenarDescendente_Click(object sender, EventArgs e)
+        {
+            if (cola.ColaVacia())
+            {
+                MessageBox.Show("La Cola Se Encuentra Vacía!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                cola.OrdenarDeMayorAMenor();
+                Refresh();
+                MessageBox.Show("Cola re-organizada", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

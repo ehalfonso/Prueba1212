@@ -14,6 +14,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
     public partial class FormularioColas : Form
     {
         MascotasEnEspera mascota = new MascotasEnEspera();
+        int idIncremental = 0;
         public FormularioColas()
         {
             InitializeComponent();
@@ -58,10 +59,12 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios
             {
                 try
                 {
+                    mascota.ID = idIncremental;
                     mascota.Nombre = txtBoxNombre.Text;
                     mascota.Raza = txtBoxRaza.Text;
                     mascota.Encargo = txtBoxPendiente.Text;
                     this.DialogResult = DialogResult.OK;
+                    idIncremental++;
                 }
                 catch
                 {

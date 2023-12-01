@@ -40,9 +40,10 @@
             panel1 = new Panel();
             CerrarApp = new Button();
             panel3 = new Panel();
-            Contenedor = new ListView();
+            gridContendor = new DataGridView();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridContendor).BeginInit();
             SuspendLayout();
             // 
             // Titulo
@@ -80,6 +81,7 @@
             OrdenarDescendente.TabIndex = 26;
             OrdenarDescendente.Text = "Ordenar Descendente";
             OrdenarDescendente.UseVisualStyleBackColor = false;
+            OrdenarDescendente.Click += OrdenarDescendente_Click;
             // 
             // OrdenarAscendente
             // 
@@ -92,6 +94,7 @@
             OrdenarAscendente.TabIndex = 25;
             OrdenarAscendente.Text = "Ordenar Ascendente";
             OrdenarAscendente.UseVisualStyleBackColor = false;
+            OrdenarAscendente.Click += OrdenarAscendente_Click;
             // 
             // Modificar
             // 
@@ -173,13 +176,14 @@
             panel3.Size = new Size(219, 147);
             panel3.TabIndex = 22;
             // 
-            // Contenedor
+            // gridContendor
             // 
-            Contenedor.Location = new Point(465, 67);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(315, 201);
-            Contenedor.TabIndex = 29;
-            Contenedor.UseCompatibleStateImageBehavior = false;
+            gridContendor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridContendor.Location = new Point(397, 59);
+            gridContendor.Name = "gridContendor";
+            gridContendor.RowTemplate.Height = 25;
+            gridContendor.Size = new Size(391, 220);
+            gridContendor.TabIndex = 30;
             // 
             // Colas
             // 
@@ -187,7 +191,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 73, 94);
             ClientSize = new Size(800, 450);
-            Controls.Add(Contenedor);
+            Controls.Add(gridContendor);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
             Controls.Add(OrdenarDescendente);
@@ -201,6 +205,7 @@
             Text = "Colas";
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridContendor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -217,6 +222,6 @@
         private Panel panel1;
         private Button CerrarApp;
         private Panel panel3;
-        private ListView Contenedor;
+        private DataGridView gridContendor;
     }
 }

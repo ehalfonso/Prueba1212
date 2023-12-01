@@ -8,6 +8,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas
 {
     public class MascotasEnEspera
     {
+        public int ID { get; set; }
         public string Nombre { get; set; }
         public string Raza { get; set; }
         public string Encargo { get; set; }
