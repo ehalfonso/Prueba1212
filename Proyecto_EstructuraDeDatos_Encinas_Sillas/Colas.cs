@@ -106,5 +106,10 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
                 MessageBox.Show("Cola re-organizada", "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void gridContendor_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

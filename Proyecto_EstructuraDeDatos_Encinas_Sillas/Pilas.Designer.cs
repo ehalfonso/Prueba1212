@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pilas));
-            Contenedor = new ListBox();
             Titulo = new Label();
             Eliminar = new Button();
             OrdenarDescendente = new Button();
@@ -41,18 +40,11 @@
             panel2 = new Panel();
             panel1 = new Panel();
             MenuPrincipal = new Button();
+            gridContenedor = new DataGridView();
             panel3.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).BeginInit();
             SuspendLayout();
-            // 
-            // Contenedor
-            // 
-            Contenedor.FormattingEnabled = true;
-            Contenedor.ItemHeight = 15;
-            Contenedor.Location = new Point(467, 67);
-            Contenedor.Name = "Contenedor";
-            Contenedor.Size = new Size(313, 199);
-            Contenedor.TabIndex = 19;
             // 
             // Titulo
             // 
@@ -76,6 +68,7 @@
             Eliminar.TabIndex = 17;
             Eliminar.Text = "Eliminar";
             Eliminar.UseVisualStyleBackColor = false;
+            Eliminar.Click += Eliminar_Click;
             // 
             // OrdenarDescendente
             // 
@@ -112,6 +105,7 @@
             Modificar.TabIndex = 14;
             Modificar.Text = "Modificar";
             Modificar.UseVisualStyleBackColor = false;
+            Modificar.Click += Modificar_Click;
             // 
             // Agregar
             // 
@@ -124,6 +118,7 @@
             Agregar.TabIndex = 13;
             Agregar.Text = "Agregar";
             Agregar.UseVisualStyleBackColor = false;
+            Agregar.Click += Agregar_Click;
             // 
             // panel3
             // 
@@ -180,13 +175,22 @@
             MenuPrincipal.UseVisualStyleBackColor = false;
             MenuPrincipal.Click += MenuPrincipal_Click;
             // 
+            // gridContenedor
+            // 
+            gridContenedor.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridContenedor.Location = new Point(405, 61);
+            gridContenedor.Name = "gridContenedor";
+            gridContenedor.RowTemplate.Height = 25;
+            gridContenedor.Size = new Size(383, 207);
+            gridContenedor.TabIndex = 19;
+            // 
             // Pilas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(52, 73, 94);
             ClientSize = new Size(800, 450);
-            Controls.Add(Contenedor);
+            Controls.Add(gridContenedor);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
             Controls.Add(OrdenarDescendente);
@@ -200,13 +204,12 @@
             Text = "Pilas";
             panel3.ResumeLayout(false);
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridContenedor).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ListBox Contenedor;
         private Label Titulo;
         private Button Eliminar;
         private Button OrdenarDescendente;
@@ -218,5 +221,6 @@
         private Panel panel2;
         private Panel panel1;
         private Button MenuPrincipal;
+        private DataGridView gridContenedor;
     }
 }
