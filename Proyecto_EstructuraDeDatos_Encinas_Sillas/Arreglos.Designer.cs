@@ -81,6 +81,7 @@
             OrdenarDescendente.TabIndex = 26;
             OrdenarDescendente.Text = "Ordenar Descendente";
             OrdenarDescendente.UseVisualStyleBackColor = false;
+            OrdenarDescendente.Click += OrdenarDescendente_Click;
             // 
             // OrdenarAscendente
             // 
@@ -93,6 +94,7 @@
             OrdenarAscendente.TabIndex = 25;
             OrdenarAscendente.Text = "Ordenar Ascendente";
             OrdenarAscendente.UseVisualStyleBackColor = false;
+            OrdenarAscendente.Click += OrdenarAscendente_Click;
             // 
             // Modificar
             // 

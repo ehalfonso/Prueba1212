@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pilas));
             Titulo = new Label();
             Eliminar = new Button();
-            OrdenarDescendente = new Button();
-            OrdenarAscendente = new Button();
             Modificar = new Button();
             Agregar = new Button();
             panel3 = new Panel();
@@ -62,7 +60,7 @@
             Eliminar.BackColor = Color.FromArgb(217, 83, 79);
             Eliminar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Eliminar.ForeColor = SystemColors.ControlLightLight;
-            Eliminar.Location = new Point(21, 207);
+            Eliminar.Location = new Point(12, 175);
             Eliminar.Name = "Eliminar";
             Eliminar.Size = new Size(133, 52);
             Eliminar.TabIndex = 17;
@@ -70,36 +68,12 @@
             Eliminar.UseVisualStyleBackColor = false;
             Eliminar.Click += Eliminar_Click;
             // 
-            // OrdenarDescendente
-            // 
-            OrdenarDescendente.BackColor = Color.Gold;
-            OrdenarDescendente.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OrdenarDescendente.ForeColor = SystemColors.ControlLightLight;
-            OrdenarDescendente.Location = new Point(237, 207);
-            OrdenarDescendente.Name = "OrdenarDescendente";
-            OrdenarDescendente.Size = new Size(133, 52);
-            OrdenarDescendente.TabIndex = 16;
-            OrdenarDescendente.Text = "Ordenar Descendente";
-            OrdenarDescendente.UseVisualStyleBackColor = false;
-            // 
-            // OrdenarAscendente
-            // 
-            OrdenarAscendente.BackColor = Color.Gold;
-            OrdenarAscendente.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            OrdenarAscendente.ForeColor = SystemColors.ControlLightLight;
-            OrdenarAscendente.Location = new Point(237, 138);
-            OrdenarAscendente.Name = "OrdenarAscendente";
-            OrdenarAscendente.Size = new Size(133, 52);
-            OrdenarAscendente.TabIndex = 15;
-            OrdenarAscendente.Text = "Ordenar Ascendente";
-            OrdenarAscendente.UseVisualStyleBackColor = false;
-            // 
             // Modificar
             // 
             Modificar.BackColor = Color.FromArgb(52, 152, 219);
             Modificar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Modificar.ForeColor = SystemColors.ControlLightLight;
-            Modificar.Location = new Point(21, 138);
+            Modificar.Location = new Point(237, 175);
             Modificar.Name = "Modificar";
             Modificar.Size = new Size(133, 52);
             Modificar.TabIndex = 14;
@@ -112,7 +86,7 @@
             Agregar.BackColor = Color.FromArgb(46, 204, 113);
             Agregar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             Agregar.ForeColor = SystemColors.ControlLightLight;
-            Agregar.Location = new Point(132, 67);
+            Agregar.Location = new Point(128, 61);
             Agregar.Name = "Agregar";
             Agregar.Size = new Size(133, 52);
             Agregar.TabIndex = 13;
@@ -193,8 +167,6 @@
             Controls.Add(gridContenedor);
             Controls.Add(Titulo);
             Controls.Add(Eliminar);
-            Controls.Add(OrdenarDescendente);
-            Controls.Add(OrdenarAscendente);
             Controls.Add(Modificar);
             Controls.Add(Agregar);
             Controls.Add(panel3);
@@ -212,8 +184,6 @@
         #endregion
         private Label Titulo;
         private Button Eliminar;
-        private Button OrdenarDescendente;
-        private Button OrdenarAscendente;
         private Button Modificar;
         private Button Agregar;
         private Panel panel3;

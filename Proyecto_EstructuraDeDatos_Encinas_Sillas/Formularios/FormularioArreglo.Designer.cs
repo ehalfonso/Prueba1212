@@ -38,6 +38,8 @@
             Cancelar = new Button();
             panel1 = new Panel();
             Confirmar = new Button();
+            InsertarAlFinal = new Button();
+            InsertarEnMedio = new Button();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -142,12 +144,40 @@
             Confirmar.UseVisualStyleBackColor = false;
             Confirmar.Click += Confirmar_Click_1;
             // 
+            // InsertarAlFinal
+            // 
+            InsertarAlFinal.BackColor = Color.Orange;
+            InsertarAlFinal.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            InsertarAlFinal.ForeColor = SystemColors.ControlLightLight;
+            InsertarAlFinal.Location = new Point(365, 242);
+            InsertarAlFinal.Name = "InsertarAlFinal";
+            InsertarAlFinal.Size = new Size(133, 35);
+            InsertarAlFinal.TabIndex = 4;
+            InsertarAlFinal.Text = "Insertar Al final";
+            InsertarAlFinal.UseVisualStyleBackColor = false;
+            InsertarAlFinal.Click += InsertarAlFinal_Click;
+            // 
+            // InsertarEnMedio
+            // 
+            InsertarEnMedio.BackColor = Color.Orange;
+            InsertarEnMedio.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            InsertarEnMedio.ForeColor = SystemColors.ControlLightLight;
+            InsertarEnMedio.Location = new Point(532, 242);
+            InsertarEnMedio.Name = "InsertarEnMedio";
+            InsertarEnMedio.Size = new Size(190, 34);
+            InsertarEnMedio.TabIndex = 27;
+            InsertarEnMedio.Text = "Insertar En el Medio";
+            InsertarEnMedio.UseVisualStyleBackColor = false;
+            InsertarEnMedio.Click += InsertarEnMedio_Click;
+            // 
             // FormularioArreglo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(294, 300);
+            ClientSize = new Size(847, 319);
+            Controls.Add(InsertarEnMedio);
+            Controls.Add(InsertarAlFinal);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(txtBoxPrecio);
@@ -174,5 +204,7 @@
         private Button Cancelar;
         private Panel panel1;
         private Button Confirmar;
+        private Button InsertarAlFinal;
+        private Button InsertarEnMedio;
     }
 }

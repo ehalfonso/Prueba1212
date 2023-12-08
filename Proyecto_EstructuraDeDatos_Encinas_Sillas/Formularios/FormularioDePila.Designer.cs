@@ -29,71 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioDePila));
-            txtBoxPendiente = new TextBox();
-            txtBoxRaza = new TextBox();
-            txtBoxNombre = new TextBox();
-            Encargo = new Label();
-            Raza = new Label();
+            Nombre = new TextBox();
             Titulo = new Label();
             NombreMascota = new Label();
             panel2 = new Panel();
             Cancelar = new Button();
             panel1 = new Panel();
             Confirmar = new Button();
-            textBox1 = new TextBox();
+            txtBoxNota = new TextBox();
             label1 = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // txtBoxPendiente
+            // Nombre
             // 
-            txtBoxPendiente.Location = new Point(137, 121);
-            txtBoxPendiente.Name = "txtBoxPendiente";
-            txtBoxPendiente.PlaceholderText = "Pendiente Con La Mascota";
-            txtBoxPendiente.Size = new Size(149, 23);
-            txtBoxPendiente.TabIndex = 35;
-            txtBoxPendiente.TextChanged += txtBoxPendiente_TextChanged;
-            // 
-            // txtBoxRaza
-            // 
-            txtBoxRaza.Location = new Point(137, 92);
-            txtBoxRaza.Name = "txtBoxRaza";
-            txtBoxRaza.PlaceholderText = "Raza De La Mascota";
-            txtBoxRaza.Size = new Size(149, 23);
-            txtBoxRaza.TabIndex = 34;
-            txtBoxRaza.TextChanged += txtBoxRaza_TextChanged;
-            // 
-            // txtBoxNombre
-            // 
-            txtBoxNombre.Location = new Point(137, 63);
-            txtBoxNombre.Name = "txtBoxNombre";
-            txtBoxNombre.PlaceholderText = "Nombre De La Mascota";
-            txtBoxNombre.Size = new Size(149, 23);
-            txtBoxNombre.TabIndex = 33;
-            txtBoxNombre.TextChanged += txtBoxNombre_TextChanged;
-            // 
-            // Encargo
-            // 
-            Encargo.AutoSize = true;
-            Encargo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            Encargo.ForeColor = SystemColors.ControlLightLight;
-            Encargo.Location = new Point(19, 127);
-            Encargo.Name = "Encargo";
-            Encargo.Size = new Size(118, 17);
-            Encargo.TabIndex = 32;
-            Encargo.Text = "Hora De Atencion";
-            // 
-            // Raza
-            // 
-            Raza.AutoSize = true;
-            Raza.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            Raza.ForeColor = SystemColors.ControlLightLight;
-            Raza.Location = new Point(19, 98);
-            Raza.Name = "Raza";
-            Raza.Size = new Size(111, 17);
-            Raza.TabIndex = 31;
-            Raza.Text = "Hora De Llegada";
+            Nombre.Location = new Point(137, 63);
+            Nombre.Name = "Nombre";
+            Nombre.PlaceholderText = "Nombre De La Mascota";
+            Nombre.Size = new Size(149, 23);
+            Nombre.TabIndex = 33;
+          
             // 
             // Titulo
             // 
@@ -167,21 +123,20 @@
             Confirmar.UseVisualStyleBackColor = false;
             Confirmar.Click += Confirmar_Click;
             // 
-            // textBox1
+            // txtBoxNota
             // 
-            textBox1.Location = new Point(137, 154);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Pendiente Con La Mascota";
-            textBox1.Size = new Size(149, 23);
-            textBox1.TabIndex = 37;
-            textBox1.TextChanged += textBox1_TextChanged;
+            txtBoxNota.Location = new Point(137, 109);
+            txtBoxNota.Name = "txtBoxNota";
+            txtBoxNota.PlaceholderText = "Pendiente Con La Mascota";
+            txtBoxNota.Size = new Size(149, 23);
+            txtBoxNota.TabIndex = 37;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(19, 160);
+            label1.Location = new Point(19, 115);
             label1.Name = "label1";
             label1.Size = new Size(38, 17);
             label1.TabIndex = 36;
@@ -193,13 +148,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(292, 366);
-            Controls.Add(textBox1);
+            Controls.Add(txtBoxNota);
             Controls.Add(label1);
-            Controls.Add(txtBoxPendiente);
-            Controls.Add(txtBoxRaza);
-            Controls.Add(txtBoxNombre);
-            Controls.Add(Encargo);
-            Controls.Add(Raza);
+            Controls.Add(Nombre);
             Controls.Add(Titulo);
             Controls.Add(NombreMascota);
             Controls.Add(panel2);
@@ -213,19 +164,14 @@
         }
 
         #endregion
-
-        private TextBox txtBoxPendiente;
-        private TextBox txtBoxRaza;
-        private TextBox txtBoxNombre;
-        private Label Encargo;
-        private Label Raza;
+        private TextBox Nombre;
         private Label Titulo;
         private Label NombreMascota;
         private Panel panel2;
         private Button Cancelar;
         private Panel panel1;
         private Button Confirmar;
-        private TextBox textBox1;
+        private TextBox txtBoxNota;
         private Label label1;
     }
 }

@@ -14,11 +14,16 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 {
     public partial class Pilas : Form
     {
+
         public RegistroAtencion registroAtencion;
+
+        public string Nombre { get; set; }
+        public string Nota { get; set; }
+
         public Pilas()
         {
             InitializeComponent();
-            registroAtencion = new RegistroAtencion();
+            registroAtencion = new RegistroAtencion(100);
             InicializarDataGridView();
         }
 
@@ -34,55 +39,83 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             this.Close();
         }
 
-        private void Agregar_Click(object sender, EventArgs e)
+        public void Agregar_Click(object sender, EventArgs e)
         {
-            registroAtencion.AgregarMascota("Nombre", DateTime.Now, DateTime.Now, "Notas");
-            ActualizarDataGridView();
+            using (FormularioDePila formulario = new FormularioDePila(registroAtencion))
+            {
+                // Mostrar el formulario de entrada
+                DialogResult resultado = formulario.ShowDialog();
 
+                if (resultado == DialogResult.OK) 
+                {
+                    // Aqui obtenemos los datos ingresados por el usuario desde el formulario
+                    string nombre = formulario.ObtenerNombre();
+                    string notas = formulario.ObtenerNotas();
+
+                    registroAtencion.AgregarMascota(nombre, DateTime.Now, DateTime.Now, notas);
+
+                    registroAtencion.ListarMascotas(gridContenedor);
+                }
+            }
         }
+
+
 
         private void Modificar_Click(object sender, EventArgs e)
         {
             if (gridContenedor.SelectedRows.Count > 0)
             {
-                // Obtener la posición de la fila seleccionada
-                int index = gridContenedor.SelectedRows[0].Index;
+                int rowIndex = gridContenedor.SelectedRows[0].Index;
+                string nombreActual = gridContenedor.Rows[rowIndex].Cells["Nombre"].Value.ToString();
+                string notasActual = gridContenedor.Rows[rowIndex].Cells["Notas"].Value.ToString();
 
-                // Mostrar el formulario de modificación con los datos de la fila seleccionada
-                MostrarFormularioModificacion(index);
+                using (FormularioDePila formulario = new FormularioDePila(registroAtencion, nombreActual, notasActual))
+                {
+                    DialogResult result = formulario.ShowDialog();
+
+                    if (result == DialogResult.OK)
+                    {
+                        registroAtencion.ModificarMascota(rowIndex, formulario.ObtenerNombre(), DateTime.Now, DateTime.Now, formulario.ObtenerNotas());
+
+                        // Actualizar el DataGridView en el formulario Pilas
+                        registroAtencion.ListarMascotas(gridContenedor);
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Seleccione una mascota para modificar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selecciona una fila para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            registroAtencion.EliminarMascota();
-            ActualizarDataGridView();
-
-        }
-        private void MostrarFormularioModificacion(int index)
-        {
-            FormularioDePila formularioModificacion = new FormularioDePila();
-
-            RegistroMascota mascotaSeleccionada = registroAtencion.ObtenerMascotasAtendidas()[index];
-
-            formularioModificacion.Nombre = mascotaSeleccionada.Nombre;
-            formularioModificacion.HoraLlegada = mascotaSeleccionada.HoraLlegada;
-            formularioModificacion.HoraAtencion = mascotaSeleccionada.HoraAtencion;
-            formularioModificacion.Notas = mascotaSeleccionada.Notas;
-
-            DialogResult resultado = formularioModificacion.ShowDialog();
-
-            if (resultado == DialogResult.OK)
+            // Verificar si hay alguna fila seleccionada en el DataGridView
+            if (gridContenedor.SelectedRows.Count > 0)
             {
-                registroAtencion.ModificarMascota(index, formularioModificacion.Nombre, formularioModificacion.HoraLlegada, formularioModificacion.HoraAtencion, formularioModificacion.Notas);
+                int Indicio = gridContenedor.SelectedRows[0].Index;
 
-                ActualizarDataGridView();
+                string nombreMascotaEliminar = gridContenedor.Rows[Indicio].Cells["Nombre"].Value.ToString();
+
+                DialogResult confirmacion = MessageBox.Show($"¿Seguro que quieres eliminar la mascota '{nombreMascotaEliminar}'?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    registroAtencion.EliminarMascota(Indicio);
+
+                    // Actualizar el DataGridView en el formulario Pilas
+                    registroAtencion.ListarMascotas(gridContenedor);
+                }
             }
+            else
+            {
+                MessageBox.Show("Selecciona una fila para eliminar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+
         }
+        
         private void InicializarDataGridView()
         {
             gridContenedor.ColumnCount = 4;
@@ -91,38 +124,10 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             gridContenedor.Columns[2].Name = "HoraAtencion";
             gridContenedor.Columns[3].Name = "Notas";
         }
-        private void ActualizarDataGridView()
-        {
-            gridContenedor.Rows.Clear();
+       
+       
 
-            var mascotas = registroAtencion.ObtenerMascotasAtendidas();
-            foreach (var mascota in mascotas)
-            {
-                gridContenedor.Rows.Add(mascota.Nombre, mascota.HoraLlegada, mascota.HoraAtencion, mascota.Notas);
-            }
-        }
-
-        //public void ModificarMascota(int index, string nombre, DateTime horaLlegada, DateTime horaAtencion, string notas)
-        //{
-        //    if (index >= 0 && index < pilaMascotas.Count)
-        //    {
-        //        // Modificar la mascota en la posición especificada
-        //        RegistroMascota mascotaActual = pilaMascotas.ElementAt(index);
-        //        mascotaActual.Nombre = nombre;
-        //        mascotaActual.HoraLlegada = horaLlegada;
-        //        mascotaActual.HoraAtencion = horaAtencion;
-        //        mascotaActual.Notas = notas;
-        //    }
-        //}
-
-        //public void EliminarMascota(int index)
-        //{
-        //    if (index >= 0 && index < pilaMascotas.Count)
-        //    {
-        //        // Eliminar la mascota en la posición especificada
-        //        pilaMascotas.ElementAt(index);
-        //    }
-        //}
+       
 
 
     }

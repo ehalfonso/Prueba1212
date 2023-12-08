@@ -1,4 +1,5 @@
 ﻿using Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios;
+using Proyecto_EstructuraDeDatos_Encinas_Sillas.Formularios.NewFolder;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeArreglos;
 using Proyecto_EstructuraDeDatos_Encinas_Sillas.LogicaDeColas;
 using System;
@@ -15,14 +16,32 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 {
     public partial class Arreglos : Form
     {
-        ManejadorArreglos arreglo1 = new ManejadorArreglos(5);
+        public ManejadorArreglos arreglo1;
+
         public Arreglos()
         {
             InitializeComponent();
+            InicializarArreglo();
             gridContendor.Columns.Add("Id", "Id");
             gridContendor.Columns.Add("Nombre", "Nombre");
             gridContendor.Columns.Add("Precio", "Precio");
             Reload();
+
+            Console.WriteLine($"Longitud de arreglo1: {arreglo1.tamañoMaximo}");
+        }
+        private void InicializarArreglo()
+        {
+            using (var longitudForm = new LongitudParaArreglo())
+            {
+                if (longitudForm.ShowDialog() == DialogResult.OK)
+                {
+                    arreglo1 = new ManejadorArreglos(longitudForm.Longitud1);
+                }
+                else
+                {
+                    Close();
+                }
+            }
         }
 
         private void MenuPrincipal_Click(object sender, EventArgs e)
@@ -37,7 +56,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             this.Close();
         }
 
-        private void Agregar_Click(object sender, EventArgs e)
+        public void Agregar_Click(object sender, EventArgs e)
         {
             FormularioArreglo formulario = new FormularioArreglo();
 
@@ -56,7 +75,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 
 
 
-        private void Modificar_Click(object sender, EventArgs e)
+        public void Modificar_Click(object sender, EventArgs e)
         {
             int indiceSeleccionado = gridContendor.SelectedCells[0].RowIndex;
 
@@ -88,7 +107,7 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
 
         }
 
-        private void Eliminar_Click(object sender, EventArgs e)
+        public void Eliminar_Click(object sender, EventArgs e)
         {
             int indiceSeleccionado = gridContendor.SelectedCells[0].RowIndex;
 
@@ -104,10 +123,37 @@ namespace Proyecto_EstructuraDeDatos_Encinas_Sillas
             }
 
         }
-        private void Reload()
+        public void Reload()
         {
             arreglo1.ListarProductos(gridContendor);
         }
 
+        private void OrdenarAscendente_Click(object sender, EventArgs e)
+        {
+            if (arreglo1 != null)
+            {
+                arreglo1.OrdenarPorPrecioAscendente();
+
+                arreglo1.ListarProductos(gridContendor); 
+            }
+            else
+            {
+                MessageBox.Show("Error: No se encontró la instancia de ManejadorArreglos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OrdenarDescendente_Click(object sender, EventArgs e)
+        {
+            if (arreglo1 != null)
+            {
+                arreglo1.OrdenarPorPrecioDescendente();
+
+                arreglo1.ListarProductos(gridContendor); 
+            }
+            else
+            {
+                MessageBox.Show("Error: No se encontró la instancia de ManejadorArreglos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
